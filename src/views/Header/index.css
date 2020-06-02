@@ -1,0 +1,8 @@
+.wrapped-header {
+  height: 50px;
+  flex: 1;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid gray;
+}

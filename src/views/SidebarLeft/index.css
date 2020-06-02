@@ -1,0 +1,15 @@
+.sidebar-left {
+  height: 100%;
+  width: 300px;
+  border-right:1px solid gray;
+}
+
+.sidebar-top{
+  border-bottom: 1px solid gray;
+}
+.wrapped-sidebbar-item-Top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
