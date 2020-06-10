@@ -19,9 +19,9 @@
 		"experimentalDecorators": true,
 		"allowJs": false,
 		"declaration": true,
-		"types": ["react"]
-	},
-	"files": ["./src/context/reducer/sidebarLeft/*.d.ts"],
-	"include": ["src/**/*.tsx","**/*.d.ts", "src/**/*.d.ts"],
+		"types": ["react"],
+	},	
+
+	"include": ["src/**/*.tsx","**/*.d.ts", "src/**/*.d.ts", "src/context/reducer/sidebarLeft/t.ts"],
 	"exclude": ["node_modules", "build"]
 }

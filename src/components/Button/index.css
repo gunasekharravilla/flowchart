@@ -1,0 +1,8 @@
+.button{
+  background: tomato;
+  padding: 5px 10px;
+  color: white;
+  display: inline-block;
+  margin: 10px 10px 10px 0px;
+  cursor: pointer;
+}

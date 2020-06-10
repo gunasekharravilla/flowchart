@@ -1,7 +1,6 @@
-.center-area {
-  width: calc(60% - 1px);
-  height: 100%;
-  position: relative;
+.sidebar-right{
+  width: calc(20% - 1px);
+  border-left: 1px solid gray;
 }
 .TransformComponent-module_container__3NwNd{
   width: 100%;

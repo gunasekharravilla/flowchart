@@ -1,143 +1,59 @@
-import React from 'react'
-import { FlowChartWithState } from "@mrblenny/react-flow-chart";
-
-const data ={
-  offset: {
-    x: 0,
-    y: 0,
-  },
-  scale: 1,
-  nodes: {
-    node1: {
-      id: 'node1',
-      type: 'output-only',
-      position: {
-        x: 300,
-        y: 100,
-      },
-      ports: {
-        port1: {
-          id: 'port1',
-          type: 'output',
-          properties: {
-            value: 'yes',
-          },
-        },
-        port2: {
-          id: 'port2',
-          type: 'output',
-          properties: {
-            value: 'no',
-          },
-        },
-      },
-    },
-    node2: {
-      id: 'node2',
-      type: 'input-output',
-      position: {
-        x: 300,
-        y: 300,
-      },
-      ports: {
-        port1: {
-          id: 'port1',
-          type: 'input',
-        },
-        port2: {
-          id: 'port2',
-          type: 'output',
-        },
-      },
-    },
-    node3: {
-      id: 'node3',
-      type: 'input-output',
-      position: {
-        x: 100,
-        y: 600,
-      },
-      ports: {
-        port1: {
-          id: 'port1',
-          type: 'input',
-        },
-        port2: {
-          id: 'port2',
-          type: 'output',
-        },
-      },
-    },
-    node4: {
-      id: 'node4',
-      type: 'input-output',
-      position: {
-        x: 500,
-        y: 600,
-      },
-      ports: {
-        port1: {
-          id: 'port1',
-          type: 'input',
-        },
-        port2: {
-          id: 'port2',
-          type: 'output',
-        },
-      },
-    },
-  },
-  links: {
-    link1: {
-      id: 'link1',
-      from: {
-        nodeId: 'node1',
-        portId: 'port2',
-      },
-      to: {
-        nodeId: 'node2',
-        portId: 'port1',
-      },
-      properties: {
-        label: 'example link label',
-      },
-    },
-    link2: {
-      id: 'link2',
-      from: {
-        nodeId: 'node2',
-        portId: 'port2',
-      },
-      to: {
-        nodeId: 'node3',
-        portId: 'port1',
-      },
-      properties: {
-        label: 'another example link label',
-      },
-    },
-    link3: {
-      id: 'link3',
-      from: {
-        nodeId: 'node2',
-        portId: 'port2',
-      },
-      to: {
-        nodeId: 'node4',
-        portId: 'port1',
-      },
-    },
-  },
-  selected: {},
-  hovered: {},
-}
+import React, {useState} from 'react';
+import FlowChart from '../../components/FlowChart';
+import BlockDraw from '../../components/BlockDraw';
+import './index.css';
+import {config} from '@fortawesome/fontawesome-svg-core';
 
 const CenterArea = () => {
-  return (
-    <div className="center-area">
-      {/* <FlowChartWithState initialValue={data}/> */}
-    </div>
-  )
-}
+  // const getDataDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  //   return e.dataTransfer.getData('flowchart');
+  // };
+  // const handleDropChart = (e: React.DragEvent<HTMLDivElement>) => {
+  //   let hasData = getDataDrop(e);
+  //   console.log('hasData', hasData);
+  // };
+  const [state, setState] = useState({
+    active: false,
+    initX: 0,
+    initY: 0,
+    currentX: 0,
+    currentY: 0,
+    offsetX: 0,
+    offsetY: 0,
+  });
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    let t = document.getElementById('test');
 
-export default CenterArea
+    if (e.target == t) {
+      let bounding = t.getBoundingClientRect();
+      setState({...state, initX: bounding.x / bounding.left, initY: bounding.y / bounding.top, active: true});
+    }
+  };
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault();
+    const {active} = state;
+
+    if (active) {
+      let t = document.getElementById('test');
+      let bounding = t.getBoundingClientRect();
+      console.log(e.clientX);
+      console.log('y', e.clientY);
+
+      setState({...state, currentX: e.clientX - bounding.x - bounding.width, currentY: e.clientY - bounding.y - bounding.height});
+    }
+  };
+
+  const onMouseUp = () => {
+    // setState({...state, active: false});
+  };
+
+  return (
+    <div className="center-area" id="test2" onMouseMove={onMouseMove} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+      <BlockDraw currentX={state.currentX} currentY={state.currentY} text={'demo'} />
+      <FlowChart />
+    </div>
+  );
+};
+
+export default CenterArea;

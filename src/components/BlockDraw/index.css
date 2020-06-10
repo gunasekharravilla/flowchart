@@ -1,0 +1,33 @@
+.block-draw {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  border: 1px solid gray;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.circle {
+  background: white;
+  border: 1px solid gray;
+  position: absolute;
+  border-radius: 50%;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+}
+
+.block-draw .circle-left {
+  left: -8.5px;
+}
+.block-draw .circle-bottom {
+  bottom: -8.5px;
+}
+.block-draw .circle-right {
+  right: -8.5px;
+}
+
+.block-draw .text {
+  
+}

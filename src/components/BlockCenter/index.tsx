@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import './index.css';
+import {useState} from 'react';
 const BlockCenter = ({
   width,
   height,
-  text,
+  text: defaultText,
   id,
   draggable = false,
-  data="",
-  border
+  data = '',
+  border,
 }: {
   width: string;
   height: string;
@@ -15,24 +16,43 @@ const BlockCenter = ({
   id?: number;
   draggable?: boolean;
   data?: string;
-  border?:string;
+  border?: string;
 }) => {
   const style = {
     width,
     height,
-    text,
-    border
+    border,
   };
+
+  const onDoubleClick = () => {
+    setEmlText(
+      <textarea
+        className="text-dom"
+        onBlur={(e) => {
+          setEmlText(
+            <div className="text-change" onDoubleClick={onDoubleClick}>
+              {e.target.value}
+            </div>
+          );
+          setText(e.target.value);
+        }}
+      ></textarea>
+    );
+  };
+  const [text, setText] = useState(defaultText);
+  const [elmText, setEmlText] = useState(<div className="text">{text}</div>);
+
   return (
     <div
       draggable={draggable}
       className="block-center"
       style={style}
       onDragStart={(event) => {
-        event.dataTransfer.setData(String(id), data);
+        event.dataTransfer.setData(String('flowchart'), text);
       }}
+      onDoubleClick={onDoubleClick}
     >
-      {text}
+      {elmText}
     </div>
   );
 };

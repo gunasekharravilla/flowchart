@@ -1,7 +1,11 @@
 import React from 'react';
 import './index.css';
-const Button = ({text}: {text: string}) => {
-  return <div className="button">{text}</div>;
+const Button = ({text, onClick, className = ''}: {text: string; onClick?: () => void; className?: string}) => {
+  return (
+    <div onClick={onClick} className={`button ${className}`}>
+      {text}
+    </div>
+  );
 };
 
 export default Button;

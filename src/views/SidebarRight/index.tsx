@@ -1,9 +1,9 @@
 import React from 'react'
-
+import './index.css'
 const SidebarRight = () => {
   return (
-    <div>
-      
+    <div className="sidebar-right">
+      right
     </div>
   )
 }

@@ -3,4 +3,20 @@
   align-items: center;
   display: flex;
   font-size: 14px;
+  position: relative;
+
+}
+.text-dom {
+  position: absolute;
+  width: 80%;
+  box-sizing: border-box;
+  height: 50%;
+}
+.text-change {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+  text-align: center;
+
 }

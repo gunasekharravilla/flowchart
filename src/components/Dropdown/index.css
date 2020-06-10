@@ -1,0 +1,19 @@
+.dropdown {
+
+}
+
+.dropdown-title {
+  background: #4CAF50;
+  font-size: 14px;
+  padding: 10px;
+  color: white;
+}
+.dropdown-content .dropdown-item {
+  /* position: absolute; */
+  padding: 10px;
+  background:#f9f9f9;
+  cursor: pointer;
+}
+.dropdown-content .dropdown-item:hover{
+  background-color: #f1f1f1;
+}
